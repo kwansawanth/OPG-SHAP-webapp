@@ -1,0 +1,42 @@
+* {
+    margin: o;
+    padding: o;
+    box-sizing: border-box;
+}
+nav {
+padding: 1rem;
+background-color: blue;
+color: blue;
+display: flex;
+justify-content: space-between;
+}
+.logo a {color: aliceblue;
+    text-align: center;
+    font-family: Inter;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    color: blue;
+text-align: center;
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.menu li {
+    margin: 0 1rem;
+    align-items: center;
+}
+
+.menu li a {
+    color: aliceblue;
+    text-decoration: none;
+}
