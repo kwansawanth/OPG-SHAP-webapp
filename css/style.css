@@ -52,7 +52,8 @@ line-height: normal;
 
 .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Stack items vertically */
+    /*justify-content: center;*/
     height: 100vh;
     position: relative; /* เพิ่มบรรทัดนี้ */
 }
@@ -74,6 +75,28 @@ line-height: normal;
     color: #1434A4;
     text-align: center;
     font-family: Inter;
-    font-size: 60px;
+    font-size: 50px;
     font-style: normal;
+    margin: 5px 0; /* Space around the welcome text */
 }
+
+.getstart {
+    display: flex;
+   /*justify-content: flex-start;*/
+    width: 796px;
+    height: 103px;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-top: 1px; /* Add margin to separate from above elements */
+}
+
+.get1 {
+    color: rgba(0, 0, 0, 0.64);
+    text-align: center;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
