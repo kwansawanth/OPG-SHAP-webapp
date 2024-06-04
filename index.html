@@ -40,11 +40,28 @@
         </div>
         <div class="getstart">
             <div class="get1">Get start</div>
-        <div class="border">
 
-        </div>
 
-    </div>
+    </div> 
+    <div class="action1">
+    <form action="/upload" method="post" enctype="multipart/form-data" class="second-form">
+        <label for="model_file2" class="upload-label">
+            <span>Import Models</span>
+            <input type="file" id="model_file2" name="model_file2" accept=".h5, .hdf5, .pb, .pbtxt, .tflite" class="upload-input">
+        </label>
+    </form>
+</div>
+    <!--our models-->
+    <select id="modelSelect" onchange="selectModel()">
+        <option value="">Select a model...</option>
+        <option value="model1">Age estimation model</option>
+        <option value="model2">Sex estimation model</option>
+        
+    </select>
+    <div id="modelDetails"></div>
+
+    <script src="script.js"></script>
+    <!--end our models-->
     
 </body>
 </html>
