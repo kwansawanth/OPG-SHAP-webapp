@@ -7,11 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!--blank box-->
     <div class="colored-box"></div>
-    <!--end-->
- 
-    <!--nav start-->
     <nav>
         <div class ="logo">
             <a href="#">OPG-SHAP</a>
@@ -23,58 +19,39 @@
       <li><a href="#">EVALUATION</a> </li>
 </ul>
     </nav>
-    <!--nav end-->
-
-    <!--class1 start-->
-    
-    <!--div class="container">
-        <div class="horizontal-line"></div>
-    <!class1 end-->
-    <!--class2 start-->
-    <div class="container">
-        <div class="horizontal-line"></div>
-        <div class="welcome-text">
-            Welcome to OPG-SHAP 
+    <div class="horizontal-line"></div>
+    <div class="content">
+        <h2>Welcome to OPG-SHAP</h2>
+        <div class="container">
+            <div class="left">
+                <h3>Get start</h3>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <label class="upload-btn" for="model_file2">Import Models 
+                        <input type="file" id="model_file2" name="model_file2" accept=".h5, .hdf5, .pb, .pbtxt, .tflite" class="upload-input" onchange="this.form.submit()">
+                    </label>
+                </form>
+                <button class="select-models">Select Models </button>
+            </div>
+            <div class="right">
+                <h3>Import Picture </h3>
+                <div class="image-container">
+                    <!--img src="https://via.placeholder.com/300x200.png?text=Image+Placeholder" alt="X-ray Image"-->
+                    <span class="delete-icon">🗑️</span> <body>
+                        <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                  <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                  <p><img id="output" width="200" /></p>
+                  
+                  <script>
+                  var loadFile = function(event) {
+                      var image = document.getElementById('output');
+                      image.src = URL.createObjectURL(event.target.files[0]);
+                  };
+                  </script>
+                    </body>
+                </div>
+            </div>
         </div>
-        <div class="bodytext">
-        </div>
-        <div class="getstart">
-            <div class="get1">Get start</div>
-
-
-    </div> 
-    <div class="action1">
-    <form action="/upload" method="post" enctype="multipart/form-data" class="second-form">
-        <label for="model_file2" class="upload-label">
-            <span>Import Models</span>
-            <input type="file" id="model_file2" name="model_file2" accept=".h5, .hdf5, .pb, .pbtxt, .tflite" class="upload-input">
-        </label>
-    </form>
-</div>
-    <!--our models-->
-    <select id="modelSelect" onchange="selectModel()">
-        <option value="">Select a model...</option>
-        <option value="model1">Age estimation model</option>
-        <option value="model2">Sex estimation model</option>
-        
-    </select>
-    <div id="modelDetails"></div>
-
-    <script src="script.js"></script>
-    <!--end our models-->
-    <div class="container1">
-        <div class="card">
-          <h3>Upload Image</h3>
-          <div class="drop_box1">
-            <header>
-              <h4>Select Image here</h4>
-            </header>
-            <p>Files Supported: JPG</p>
-            <input type="file" hidden accept="image/*" id="fileID" style="display:none;">
-            <button class="btn">Choose Image</button>
-          </div>
-      
-        </div>
-      </div>
+        <button class="predict-btn">Predict</button>
+    </div>
 </body>
 </html>

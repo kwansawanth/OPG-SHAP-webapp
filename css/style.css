@@ -11,6 +11,7 @@
     margin: o;
     padding: o;
     box-sizing: border-box;
+    text-align: center;
 }
 nav {
 padding: 1rem;
@@ -49,168 +50,88 @@ line-height: normal;
     color: black;
     text-decoration: none;
 }
-
-.container {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    /*justify-content: center;*/
-    height: 100vh;
-    position: relative; /* เพิ่มบรรทัดนี้ */
-}
 .horizontal-line {width: 95%; /* กำหนดความกว้างให้เต็มหน้า */
     height: 1px; /* ความสูงของเส้น */
     background-color: #000; /* สีของเส้น */
-    margin: 10px 0; /* ระยะห่างจากด้านบนและล่าง */
+    margin: 5px 0; /* ระยะห่างจากด้านบนและล่าง */
 
 }
 
-.bodytext {display: flex;
-    width: 600px;
-    height: 40px;
-    justify-content: center;
-    flex-shrink: 1;
-    margin: 1px; /* ระยะห่างจากด้านบนและล่าง */
-}
-.welcome-text {
-    color: #1434A4;
-    text-align: center;
-    font-family: Inter;
-    font-size: 50px;
-    font-style: normal;
-    margin: 0.5px; /* Space around the welcome text */
+.content {
+    margin: 40px 20px;
 }
 
-.getstart {
+.content h2 {font-size: 50px;
+    color: #0056b3;
+}
+
+.container {
     display: flex;
-   /*justify-content: flex-start;*/
-    width: 600px;
-    height: 70px;
-    flex-direction: column;
-    flex-shrink: 0;
-    margin-top: 0.5px; /* Add margin to separate from above elements */
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
 }
 
-.get1 {
-    color: rgba(0, 0, 0, 0.64);
-    text-align: center;
-    font-family: Inter;
-    font-size: 32px;
-    font-style: normal;
-    line-height: normal;
+.left, .right {
+    margin: 0 150px;
+    justify-content: space-between;
 }
 
-#modelSelect {
-    width: 200px;
+.upload-btn {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.upload-input {
+    display: none;
+}
+
+.select-models {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.predict-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-btn:hover, .select-models:hover, .predict-btn:hover {
+    opacity: 0.9;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    border: 2px dashed #ccc;
     padding: 10px;
-    margin: 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-/*.action1 {
-    width: 555px;
-height: 89px;
-flex-shrink: 0;
-border-radius: 10px;
-background: #D9D9D9;
-}
-.action1 action {display: flex;
-    width: 342px;
-    height: 39px;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}*/
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-* {
-    margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
-.container1 {
-  width: 100%;
-  align-items: flex-end;
-  display: flex;
-  justify-content: flex-end;
-  background-color: #fcfcfc;
+.image-container img {
+    max-width: 300px;
+    height: auto;
 }
 
-.card {
-  border-radius: 10px;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-  width: 600px;
-  height: 360px;
-  background-color: #ffffff;
-  padding: 10px 30px 40px;
+.delete-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
-
-.card h3 {
-  font-size: 22px;
-  font-weight: 600;
-  
-}
-
-.drop_box1 {
-  margin: 50px 0;
-  padding: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 3px dotted #a3a3a3;
-  border-radius: 5px;
-}
-
-.drop_box h4 {
-  font-size: 16px;
-  font-weight: 400;
-  color: #2e2e2e;
-}
-
-.drop_box p {
-  margin-top: 10px;
-  margin-bottom: 50px;
-  font-size: 12px;
-  color: #a3a3a3;
-}
-
-.btn {
-  text-decoration: none;
-  background-color: #005af0;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  outline: none;
-  transition: 0.3s;
-}
-
-.btn:hover{
-  text-decoration: none;
-  background-color: #ffffff;
-  color: #005af0;
-  padding: 10px 20px;
-  border: none;
-  outline: 1px solid #010101;
-}
-.form input {
-  margin: 10px 0;
-  width: 100%;
-  background-color: #e2e2e2;
-  border: none;
-  outline: none;
-  padding: 12px 20px;
-  border-radius: 4px;
-}
-
