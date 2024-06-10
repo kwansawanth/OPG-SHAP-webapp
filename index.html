@@ -30,7 +30,13 @@
                         <input type="file" id="model_file2" name="model_file2" accept=".h5, .hdf5, .pb, .pbtxt, .tflite" class="upload-input" onchange="this.form.submit()">
                     </label>
                 </form>
-                <button class="select-models">Select Models </button>
+                <select class="select">
+                    <option value="">Select Models</option>
+                  <option value="0">Age estimation model:</option>
+                  <option value="1">Sex estimation model</option>
+                  
+                </select>
+                <!--button class="select-models">Select Models </button-->
             </div>
             <div class="right">
                 <h3>Import Picture </h3>
