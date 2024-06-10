@@ -39,6 +39,7 @@ model_7_23 = load_model('../Webapp/templates/26_Multi_1e-6_250_Unfreeze.h5')
 model_7_14 = load_model('../Webapp/templates/36_Multi_1e-5_500_Unfreeze.h5')
 model_15_23 = load_model('../Webapp/templates/25_Multi_1e-6_500_Unfreeze.h5')
 
+
 # Load your models outside of the request to save loading time
 random_forest_model = load('../Webapp/templates/logreg_classifier1.joblib')  # Adjust path as needed
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
