@@ -1,0 +1,66 @@
+.colored-box {
+    width: 100%;  /* Width of the box */
+    height: 60px; /* Height of the box */
+    background-color: #132c87; /* Color of the box */
+    border: 2px solid #132c87; /* Optional: Border color and width */
+    
+}
+
+
+* {
+    margin: o;
+    padding: o;
+    box-sizing: border-box;
+    text-align: center;
+}
+nav {
+padding: 1rem;
+background-color: none;
+color: black;
+display: flex;
+justify-content: space-between;
+}
+.logo a {color: black;
+    text-align: center;
+    font-family: Inter;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    color: blue;
+text-align: center;
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.menu li {
+    margin: 0 1rem;
+    align-items: center;
+}
+
+.menu li a {
+    color: black;
+    text-decoration: none;
+}
+.horizontal-line {width: 95%; /* กำหนดความกว้างให้เต็มหน้า */
+    height: 1px; /* ความสูงของเส้น */
+    background-color: #000; /* สีของเส้น */
+    margin: 5px 0; /* ระยะห่างจากด้านบนและล่าง */
+
+}
+
+.content {
+    margin: 5px 20px;
+}
+
+.content h2 {font-size: 40px;
+    color: #0056b3;
+}
