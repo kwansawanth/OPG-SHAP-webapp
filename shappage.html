@@ -24,13 +24,16 @@
     <div class="content">
         <h2>SHAP</h2>
 
-<from action = "#" method = "post" name="myform">
+<from action = "#" method = "post" name="frompredict">
     Predict : <input type="text" name="Predict" id=""> <br>
-    Precentile : <input type="number" name="Precentile" id="">
+    <!-- Precentile : <input type="number" name="Precentile" id=""> -->
 </from> 
+<from action = "#" method = "post" name="frompercentile">
+    Precentile : <input type="number" name="Precentile" id="">
+</from>
 
 <div class ="shapoutput">
-    <img src="#" alt="#" style="width: 600px; max-width: 100%; height: 400; max-height: 100%;">
+    <img src="#" alt="#" style="width: 700px; height: 500px;">
 </div>
 
 <div class ="shapinput">
@@ -44,5 +47,9 @@
                 <input type="text" name="posinput" id=""> <br>
             </form>
         </div>
-
-</div
+</div>
+<div class="backnext">
+    <a class="back-btn" href="index.html">Back</a>
+    <a class="Next-btn" href="evaluationpage.html">Next</a>
+    </div>
+</div>
