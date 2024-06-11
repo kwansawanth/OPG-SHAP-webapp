@@ -69,7 +69,7 @@ line-height: normal;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin: 40px;
 }
 
 .left, .right {
@@ -103,7 +103,7 @@ line-height: normal;
 }
 
 .predict-btn {
-    margin-top: 30px;
+    margin-top: 220px 100px;
     padding: 15px 30px;
     font-size: 18px;
     background-color: #007bff;

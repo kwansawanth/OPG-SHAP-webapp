@@ -19,28 +19,32 @@ import matplotlib.patches as patches
 from langdetect import detect
 import sys
 import json
-from joblib import load
-from transformers import BertTokenizer, TFBertModel
+# from joblib import load
+# from transformers import BertTokenizer, TFBertModel
 
 
 
 app = Flask(__name__)
 
-from efficientnet.layers import Swish, DropConnect
-from efficientnet.model import ConvKernalInitializer
-from tensorflow.keras.utils import get_custom_objects
-get_custom_objects().update({
-    'ConvKernalInitializer': ConvKernalInitializer,
-    'Swish': Swish,
-    'DropConnect':DropConnect
-})
+# from efficientnet.layers import Swish, DropConnect
+# from efficientnet.model import ConvKernalInitializer
+# from tensorflow.keras.utils import get_custom_objects
+# get_custom_objects().update({
+#     'ConvKernalInitializer': ConvKernalInitializer,
+#     'Swish': Swish,
+#     'DropConnect':DropConnect
+# })
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 model_7_23 = load_model('../Webapp/templates/26_Multi_1e-6_250_Unfreeze.h5')
 model_7_14 = load_model('../Webapp/templates/36_Multi_1e-5_500_Unfreeze.h5')
 model_15_23 = load_model('../Webapp/templates/25_Multi_1e-6_500_Unfreeze.h5')
 
 
+
 # Load your models outside of the request to save loading time
-random_forest_model = load('../Webapp/templates/logreg_classifier1.joblib')  # Adjust path as needed
-tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
-bert_model = TFBertModel.from_pretrained('bert-base-multilingual-cased')
+# random_forest_model = load('../Webapp/templates/logreg_classifier1.joblib')  # Adjust path as needed
+# tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
+# bert_model = TFBertModel.from_pretrained('bert-base-multilingual-cased')
