@@ -107,16 +107,18 @@ def upload_model():
         logging.error('File type not allowed')
         return redirect(url_for('index'))
 
-@app.route('/predict', methods=['POST'])
-def predict():
+@app.route('/upload_image', methods=['POST'])
+def upimage():
     if 'image' not in request.files:
         flash('No file part')
         logging.error('No file part in the request')
-        return redirect(url_for('index'))
+        print("1")
+        return redirect(url_for('shappage')) #มีรูปแล้ว
     file = request.files['image']
     if file.filename == '':
         flash('No selected file')
         logging.error('No selected file')
+        print("2")
         return redirect(url_for('index'))
     if file and allowed_file(file.filename, app.config['ALLOWED_IMAGE_EXTENSIONS']):
         filename = secure_filename(file.filename)
@@ -130,6 +132,7 @@ def predict():
         if selected_model not in models:
             flash('Model not found')
             logging.error(f'Model {selected_model} not found')
+            print("3")
             return redirect(url_for('index'))
         
         model = models[selected_model]
