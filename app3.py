@@ -37,23 +37,29 @@ def upload_model():
     if model_file and allowed_file(model_file.filename):
         filename = secure_filename(model_file.filename)
         model_file.save(os.path.join(app.config['UPLOAD_FOLDER_MODELS'], filename))
-        print("Model uploaded successfully")
+        flash("Model uploaded successfully", "success")
+    else:
+        flash("Invalid model file type", "error")
     return redirect(url_for('index'))
 
 @app.route('/upload_image', methods=['POST'])
 def predict():
-    selected_model = request.form['selected_model']
-    image_file = request.files['image']
+    selected_model = request.form.get('selected_model')
+    image_file = request.files.get('image')
 
-    if 'image' not in request.files or not image_file:
-        flash('No image part')
+    if not image_file or not allowed_file(image_file.filename):
+        flash("Invalid image file type", "error")
         return redirect(url_for('index'))
     
-    if selected_model and image_file and allowed_file(image_file.filename):
+    try:
         # Save the uploaded image file
         image_filename = secure_filename(image_file.filename)
         image_path = os.path.join(app.config['UPLOAD_FOLDER_IMAGES'], image_filename)
         image_file.save(image_path)
+        
+        if not selected_model:
+            flash("No model selected, image saved", "error")
+            return redirect(url_for('index'))
 
         # Load the model
         model_path = os.path.join(app.config['UPLOAD_FOLDER_MODELS'], selected_model)
@@ -71,7 +77,9 @@ def predict():
         output = f"Prediction from {selected_model}: {predicted_class}"
 
         return render_template('index.html', output=output, model_names=get_available_models(), image_path=image_path)
-    return redirect(url_for('index'))
+    except Exception as e:
+        flash(f"An error occurred: {str(e)}", "error")
+        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)

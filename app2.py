@@ -110,14 +110,14 @@ def upload_model():
 @app.route('/upload_image', methods=['POST'])
 def up_image():
     if 'image' not in request.files:
-        flash('No file part')
-        logging.error('No file part in the request')
+        # flash('No file part')
+        # logging.error('No file part in the request')
         print("1")
         return redirect(url_for('shappage')) #มีรูปแล้ว
     file = request.files['image']
     if file.filename == '':
-        flash('No selected file')
-        logging.error('No selected file')
+        # flash('No selected file')
+        # logging.error('No selected file')
         print("2")
         return redirect(url_for('index'))
     if file and allowed_file(file.filename, app.config['ALLOWED_IMAGE_EXTENSIONS']):
@@ -126,12 +126,12 @@ def up_image():
         file.save(filepath)
         
         selected_model = request.form.get('selected_model')
-        logging.info(f'Selected model: {selected_model}')
-        logging.info(f'Available models: {list(models.keys())}')
+        # logging.info(f'Selected model: {selected_model}')
+        # logging.info(f'Available models: {list(models.keys())}')
 
         if selected_model not in models:
-            flash('Model not found')
-            logging.error(f'Model {selected_model} not found')
+            # flash('Model not found')
+            # logging.error(f'Model {selected_model} not found')
             print("3")
             return redirect(url_for('index'))
         
@@ -150,8 +150,8 @@ def up_image():
             flash(f"An error occurred during prediction: {e}")
             return redirect(url_for('index'))
     else:
-        flash('File type not allowed')
-        logging.error('File type not allowed')
+        # flash('File type not allowed')
+        # logging.error('File type not allowed')
         return redirect(url_for('index'))
 
 @app.route('/shappage')
