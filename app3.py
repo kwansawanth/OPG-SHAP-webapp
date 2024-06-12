@@ -80,6 +80,17 @@ def predict():
     except Exception as e:
         flash(f"An error occurred: {str(e)}", "error")
         return redirect(url_for('index'))
+@app.route('/shappage')
+def shappage():
+    return render_template('shappage.html')
+
+@app.route('/detectionpage')
+def detectionpage():
+    return render_template('detectionpage.html')
+
+@app.route('/evaluationpage')
+def evaluationpage():
+    return render_template('evaluationpage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
