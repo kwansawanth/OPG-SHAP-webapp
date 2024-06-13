@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPG - SHAP WEB</title>
-    <link rel="stylesheet" href="css/styleevaluation.css">
+    <link rel="stylesheet" href="../static/css/styleevaluation.css">
 </head>
 
 <body>
@@ -24,8 +24,7 @@
     <div class="content">
         <h2>EVALUATION</h2>
         <p>Predict: {{ predict }}</p>
-        <p>Node0: {{ node0 }}</p>
-        <p>Node1: {{ node1 }}</p>
+        <p>Negative values: {{ node0 }}</p><p>Positive values: {{ node1 }}</p>
         <!-- <a href="/">Back to SHAP Page</a> -->
     </body>
     </html>
