@@ -13,56 +13,39 @@
         <div class ="logo">
             <a href="#">OPG-SHAP</a>
          </div>
-<ul class="menu">
-      <li><a href="index.html">IMPORT MODELS</a></li>
-      <li><a href="shappage.html">SHAP</a></li>
-      <li><a href="detectionpage.html">DETECTION</a></li>
-      <li><a href="evaluationpage.html">EVALUATION</a> </li>
-</ul>
+        <ul class="menu">
+            <li><a href="index.html">IMPORT MODELS</a></li>
+            <li><a href="shappage.html">SHAP</a></li>
+            <li><a href="detectionpage.html">DETECTION</a></li>
+            <li><a href="evaluationpage.html">EVALUATION</a></li>
+        </ul>
     </nav>
     <div class="horizontal-line"></div>
     <div class="content">
         <h2>SHAP</h2>
 
-<from action = "#" method = "post" name="frompredict">
-    Predict : <input type="text" name="Predict" id="predictbox"> <br>
-    <!-- Precentile : <input type="number" name="Precentile" id=""> -->
-</from> 
-<!-- <from action = "#" method = "post" name="frompercentile">
-    Precentile : <input type="number" name="Precentile" id="">
-</from> -->
-<div class="predictboxinput">
-    <div class="left">
-        <form action="#" method="post" name="node0input">
-            <input type="text" name="node0input" id="">Node0<br>
+        <form action="/frompredict" method="post" name="frompredict1">
+            Predict : <input type="text" name="frompredict" id="predictbox"> <br>
+            <!-- Precentile : <input type="number" name="Precentile" id=""> -->
+            
+            <div class="predictboxinput">
+                <div class="left">
+                    <input type="text" name="node0input" id="">Node0<br>
+                </div>
+                <div class="right">
+                    <input type="text" name="node1input" id="">Node1 <br>
+                </div>
+            </div>
+            
+            <div class="shapoutput">
+                <img src="#" alt="#" style="width: 700px; height: 500px;">
+            </div>
+            
+            <div class="backnext">
+                <a class="back-btn" href="../templates/index.html">Back</a>
+                <p><input class="Next-btn" type="submit" value="Next"></p> 
+            </div>
         </form>
     </div>
-    <div class="right">
-        <form action="#" method="post" name="node1input">
-            <input type="text" name="node1input" id="">Node1 <br>
-        </form>
-    </div>
-</div>
-<div class="shapoutput">
-    <img src="#" alt="#" style="width: 700px; height: 500px;">
-</div>
-<!-- 
-<div class ="shapinput">
-    <div class="left">
-        <form action="#" method="post" name="shapneginput">
-            <input type="text" name="neginput" id=""> <br>
-        </form>
-        </div>
-        <div class="right">
-            <form action="#" method="post" name="shapposinput">
-                <input type="text" name="posinput" id=""> <br>
-            </form>
-        </div> -->
-</div>
-<div class="backnext">
-    <a class="back-btn" href="../templates/index.html">Back</a>
-    <a class="Next-btn" href="../templates/detectionpage.html">Next</a>
-    </div>
-</div>
 </body>
 </html>
