@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPG - SHAP WEB</title>
-    <link rel="stylesheet" href="css/styleshap.css">
+    <link rel="stylesheet" href="../static/css/styleshap.css">
 </head>
 
 <body>
@@ -25,14 +25,25 @@
         <h2>SHAP</h2>
 
 <from action = "#" method = "post" name="frompredict">
-    Predict : <input type="text" name="Predict" id=""> <br>
+    Predict : <input type="text" name="Predict" id="predictbox"> <br>
     <!-- Precentile : <input type="number" name="Precentile" id=""> -->
 </from> 
 <!-- <from action = "#" method = "post" name="frompercentile">
     Precentile : <input type="number" name="Precentile" id="">
 </from> -->
-
-<div class ="shapoutput">
+<div class="predictboxinput">
+    <div class="left">
+        <form action="#" method="post" name="node0input">
+            <input type="text" name="node0input" id="">Node0<br>
+        </form>
+    </div>
+    <div class="right">
+        <form action="#" method="post" name="node1input">
+            <input type="text" name="node1input" id="">Node1 <br>
+        </form>
+    </div>
+</div>
+<div class="shapoutput">
     <img src="#" alt="#" style="width: 700px; height: 500px;">
 </div>
 <!-- 
@@ -49,7 +60,9 @@
         </div> -->
 </div>
 <div class="backnext">
-    <a class="back-btn" href="index.html">Back</a>
-    <a class="Next-btn" href="evaluationpage.html">Next</a>
+    <a class="back-btn" href="../templates/index.html">Back</a>
+    <a class="Next-btn" href="../templates/detectionpage.html">Next</a>
     </div>
 </div>
+</body>
+</html>
