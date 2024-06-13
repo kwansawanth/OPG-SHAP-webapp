@@ -64,3 +64,20 @@ line-height: normal;
 .content h2 {font-size: 40px;
     color: #0056b3;
 }
+
+.button {   display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+.dowload, .again {
+    margin: 0 150px ;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* เอาเส้นใต้ออก */
+}

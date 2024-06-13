@@ -75,7 +75,7 @@ line-height: normal;
     margin: 0 150px;
     justify-content: space-between;
     background-color: #f1f1f1;
-    border: 2px solid #ccc;
+    /* border: 2px solid #ccc; */
 }
 .backnext {   display: flex;
     justify-content: space-between;
