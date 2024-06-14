@@ -10,6 +10,7 @@ def predict_box():
 
 @app.route('/frompredict', methods=['POST'])
 def predict():
+    global predict_input, node0_input, node1_input
     predict_input = request.form.get('frompredict')
     node0_input = request.form.get('node0input')
     node1_input = request.form.get('node1input')
@@ -18,10 +19,7 @@ def predict():
 
 @app.route('/evaluationpage')
 def evaluationpage():
-    predict_input = request.args.get('predict')
-    node0_input = request.args.get('node0')
-    node1_input = request.args.get('node1')
-
+    global predict_input, node0_input, node1_input
     return render_template('evaluationpage.html', predict=predict_input, node0=node0_input, node1=node1_input)
 
 if __name__ == '__main__':

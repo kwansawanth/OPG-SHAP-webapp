@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPG - SHAP WEB</title>
     <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/updateDefaults.js"></script>
 </head>
 <body>
     <div class="colored-box"></div>
@@ -30,12 +31,12 @@
                         <input type="file" id="model_file2" name="model_file2" accept=".h5, .hdf5, .pb, .pbtxt, .tflite" class="upload-input" onchange="this.form.submit()">
                     </label>
                 </form>
-                <select class="select">
-                    <option value="">Select Models</option>
-                  <option value="0">Age estimation model:</option>
-                  <option value="1">Sex estimation model</option>
-                  
-                </select>
+                <form action="/frompredict" method="POST">
+                    <select name="model_select" id="model_select" class="select" onchange="updateDefaults()">
+                        <option value="">Select Models</option>
+                        <option value="0">Age estimation model</option>
+                        <option value="1">Sex estimation model</option>
+                    </select>
                 <!--button class="select-models">Select Models </button-->
             </div>
             <div class="right">
