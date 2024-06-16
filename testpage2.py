@@ -4,14 +4,21 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/frompredict-page1', methods=['GET', 'POST'])
 def predict_box():
-    return render_template('testpage.html')
+    global predict_input_page1
+    predict_input_page1 = request.form.get('frompredict')
+
+    return render_template('testpage.html', predict_input=predict_input_page1)
 
 @app.route('/frompredict', methods=['POST'])
 def predict():
     global predict_input, node0_input, node1_input
-    predict_input = request.form.get('frompredict')
+    predict_input = predict_input_page1
     node0_input = request.form.get('node0input')
     node1_input = request.form.get('node1input')
 
