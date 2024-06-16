@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="../static/css/styleshap.css">
     <script src="../static/js/updateDefaults.js"></script>
 </head>
-
 <body>
     <div class="colored-box"></div>
     <nav>
-        <div class ="logo">
+        <div class="logo">
             <a href="#">OPG-SHAP</a>
-         </div>
+        </div>
         <ul class="menu">
             <li><a href="index.html">IMPORT MODELS</a></li>
             <li><a href="shappage.html">SHAP</a></li>
@@ -24,30 +23,22 @@
     <div class="horizontal-line"></div>
     <div class="content">
         <h2>SHAP</h2>
-
         <form action="/frompredict" method="POST">
-            <!-- <select name="model_select" id="model_select" class="select" onchange="updateDefaults()">
-                <option value="">Select Models</option>
-                <option value="0">Age estimation model</option>
-                <option value="1">Sex estimation model</option>
-            </select> -->
-            <br><br>
             <label for="frompredict">Predict:</label>
-            <input type="text" name="frompredict" id="frompredict">
+            <input type="text" name="frompredict" id="frompredict" value="{{ predict_input }}">
             <br><br>
             <label for="node0input">Node0:</label>
-            <input type="text" name="node0input" id="node0input">
-            <label for="node1input">Node1:</label>
-            <input type="text" name="node1input" id="node1input">
+            <input type="text" name="node0input" id="node0input" value="{{ node0_input }}">
             <br><br>
-            
+            <label for="node1input">Node1:</label>
+            <input type="text" name="node1input" id="node1input" value="{{ node1_input }}">
+            <br><br>
             <div class="shapoutput">
                 <img src="#" alt="#" style="width: 700px; height: 500px;">
             </div>
-            
             <div class="backnext">
-                <a class="back-btn" href="../templates/index.html">Back</a>
-                <p><input class="Next-btn" type="submit" value="Next"></p> 
+                <a class="back-btn" href="index.html">Back</a>
+                <p><input class="Next-btn" type="submit" value="Next"></p>
             </div>
         </form>
     </div>
