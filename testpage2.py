@@ -14,7 +14,12 @@ def predict_box():
     predict_input_page1 = request.form.get('frompredict')
     node0_input = request.form.get('node0input')
     node1_input = request.form.get('node1input')
-    return render_template('testpage.html', predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input)
+
+    print(f'model_select_input: {model_select_input}')
+    print(f'predict_input_page1: {predict_input_page1}')
+    print(f'node0_input: {node0_input}')
+    print(f'node1_input: {node1_input}')
+    return render_template('shappage.html', predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input)
 
 @app.route('/frompredict', methods=['POST'])
 def predict():
