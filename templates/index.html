@@ -40,41 +40,37 @@
                     <input type="hidden" id="frompredict" name="frompredict">
                     <input type="hidden" id="node0input" name="node0input">
                     <input type="hidden" id="node1input" name="node1input">
-                    
+                </form>    
                 <!--button class="select-models">Select Models </button-->
             </div>
             <div class="right">
                 <h3>Import OPG images </h3>
                 <div class="image-container">
-                
-        
                     <span class="delete-icon">🗑️</span> <body>
                         <!-- <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
                   <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
                   <p><img id="output" width="200" /></p> -->
                   <form action="/upload_image" method="post" enctype="multipart/form-data">
-                  <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
-                  <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                  <p><img id="output" width="200" /></p>
-                  <!-- <p><input class="predict-btn" type="submit" value="Predict"></p>  -->
-                <script>
-                var loadFile = function(event) {
-                    var image = document.getElementById('output');
-                    image.src = URL.createObjectURL(event.target.files[0]);
-                };
-                </script>
-                  </body>
+                    <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                    <p><img id="output" width="200" /></p>
+                    <!-- <p><input class="predict-btn" type="submit" value="Predict"></p>  -->
                 </div>
           </div>
       </div>
     </div> 
-        <p><input class="predict-btn" type="submit" value="Predict"></p> 
-      </div>  
+    <p><input class="predict-btn" type="submit" value="Predict"></p> 
       
       <!-- <a class="predict-btn" href="/shappage">Predict</a>
   </div> -->
         <!-- <a class="predict-btn" href="/shappage">Predict</a>
     </div> -->
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
 </body>
 </html>
 

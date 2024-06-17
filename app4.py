@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import tensorflow as tf
 import sys
-from efficientnet.layers import Swish, DropConnect
+# from efficientnet.layers import Swish, DropConnect
 from efficientnet.model import ConvKernalInitializer
 from tensorflow.keras.utils import get_custom_objects
 import numpy as np   
@@ -55,7 +55,7 @@ def load_custom_model(model_path):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     model_names = get_available_models()
-    return render_template('index2.html', model_names=model_names)
+    return render_template('index.html', model_names=model_names)
 
 @app.route('/upload_model', methods=['POST'])
 def upload_model():

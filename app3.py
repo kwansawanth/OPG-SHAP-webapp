@@ -44,9 +44,9 @@ def upload_model():
 
 @app.route('/upload_image', methods=['POST'])
 def predict():
-    selected_model = request.form.get('selected_model')
+    selected_model = request.form.get('model_select')
     image_file = request.files.get('image')
-
+    print('B')
     if not image_file or not allowed_file(image_file.filename):
         flash("Invalid image file type", "error")
         return redirect(url_for('index'))
@@ -54,6 +54,7 @@ def predict():
     try:
         # Save the uploaded image file
         image_filename = secure_filename(image_file.filename)
+        print('A')
         image_path = os.path.join(app.config['UPLOAD_FOLDER_IMAGES'], image_filename)
         image_file.save(image_path)
         
@@ -80,6 +81,25 @@ def predict():
     except Exception as e:
         flash(f"An error occurred: {str(e)}", "error")
         return redirect(url_for('index'))
+    
+@app.route('/frompredict-page1', methods=['POST'])
+def predict_box():
+    if request.method == 'POST':
+        global model_select_input, predict_input_page1, node0_input, node1_input
+        model_select_input = request.form.get('model_select')
+        predict_input_page1 = request.form.get('frompredict')
+        node0_input = request.form.get('node0input')
+        node1_input = request.form.get('node1input')
+
+        print(f'model_select_input: {model_select_input}')
+        print(f'predict_input_page1: {predict_input_page1}')
+        print(f'node0_input: {node0_input}')
+        print(f'node1_input: {node1_input}')
+        return render_template('shappage.html', predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input)
+    else:
+        return redirect(url_for('index'))
+
+
 @app.route('/shappage')
 def shappage():
     return render_template('shappage.html')
