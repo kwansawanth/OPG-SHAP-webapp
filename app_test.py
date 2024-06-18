@@ -15,6 +15,10 @@ print(keras.__version__)
 from PIL import Image
 print(Image.__version__)
 import cv2
+import subprocess
+import torch
+from yolov5 import utils
+
 
 
 app = Flask(__name__, static_folder='static')  # Include static folder
@@ -62,6 +66,7 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    #model
     model_file = request.files.get('model_file2')
     filename = None
     input_model = None
@@ -84,9 +89,10 @@ def predict():
     else:
         model = None
     
+    
+   
     selected_model = input_model if input_model else model
     print(f'selected_model: {selected_model}')
-    
     image_file = request.files.get('image')
     
     if not selected_model:
@@ -98,6 +104,14 @@ def predict():
         image_filename = image_file.filename
         image_path = os.path.join(app.config['UPLOAD_FOLDER_IMAGES'], image_filename)
         image_file.save(image_path)
+       
+        # Define the output filenames
+        left_image_filename = 'left_' + image_filename
+        left_image_path = os.path.join(app.config['UPLOAD_FOLDER_IMAGES'], left_image_filename)
+        print(left_image_path)
+
+        # Call the cut_image.py script as a subprocess
+        subprocess.run(['python', 'cut_image.py', image_path, left_image_path])
         
         # Load the model
         model_path = selected_model
@@ -128,11 +142,10 @@ def predict():
         output = f"Prediction from {selected_model}: {predicted_class}"
         print(f'output: {output}')
 
+        
         return render_template('shappage.html', output=output, predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input)
+    
     return redirect(url_for('index'))
-
-
-
 
 # @app.route('/upload_model', methods=['POST'])
 # def upload_model():
