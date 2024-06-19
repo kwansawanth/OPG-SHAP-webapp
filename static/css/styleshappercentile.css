@@ -65,18 +65,17 @@ line-height: normal;
     color: #0056b3;
 }
 
-.predictboxinput {
+.container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Align left and right elements */
     align-items: center;
-    margin-top: 40px;
+    margin: 40px;  
 }
+
 .left, .right {
-    margin: 0 150px;
-    justify-content: space-between;
-    background-color: #f1f1f1;
-    border: 2px solid #ccc;
+    flex-basis: 45%; /* Adjust the width of left and right elements */
 }
+
 .backnext {   display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,6 +92,8 @@ line-height: normal;
     cursor: pointer;
     text-decoration: none; /* เอาเส้นใต้ออก */
 }
+
+
 
 .slider {
     -webkit-appearance: none;

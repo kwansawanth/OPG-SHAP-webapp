@@ -66,14 +66,29 @@ def predict():
         model_path = os.path.join(app.config['UPLOAD_FOLDER_MODELS'], selected_model)
         model = load_model(model_path)
 
-        # Preprocess the image
-        img = image.load_img(image_path, target_size=(224, 224))
-        img_array = image.img_to_array(img)
-        img_array = np.expand_dims(img_array, axis=0)
-        img_array /= 255.0
+        # # Preprocess the image
+        # img = image.load_img(image_path, target_size=(224, 224))
+        # img_array = image.img_to_array(img)
+        # img_array = np.expand_dims(img_array, axis=0)
+        # img_array /= 255.0
+
+
+
+        img = Image.open(image_path)
+        width, height = img.size
+        frac = 0.6
+        # Crop 60% from the left of the image
+        crop_left_width = int(width * frac)
+        cropped_left = img.crop((0, 0, crop_left_width, height))
+        left_image_output_path = cropped_left
+
+        # # Save the cropped image
+        # cropped_left.save(left_image_output_path)
+
+        
 
         # Get predictions
-        predictions = model.predict(img_array)
+        predictions = model.predict(left_image_output_path)
         predicted_class = np.argmax(predictions[0])
         output = f"Prediction from {selected_model}: {predicted_class}"
 
