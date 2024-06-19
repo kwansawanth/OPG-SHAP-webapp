@@ -16,12 +16,13 @@ def cut_image(image_path, left_filename):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 3:
         print("Usage: python cut_image.py <image_path> <left_image_output_path> ")
         sys.exit(1)
 
     image_path = sys.argv[1]
+    print(f'print image path from cut_image.py: {image_path}')
     left_image_output_path = sys.argv[2]
-    
+    print(f'print left image path from cut_image.py: {left_image_output_path}')
 
     cut_image(image_path, left_image_output_path)
