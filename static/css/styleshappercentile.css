@@ -69,12 +69,25 @@ line-height: normal;
     display: flex;
     justify-content: space-between; /* Align left and right elements */
     align-items: center;
-    margin: 40px;  
+    margin: 60px 20px;  /* กำหนดระยะห่างในแนวนอน (20px) และแนวดิ่ง (40px) */
 }
 
-.left, .right {
-    flex-basis: 45%; /* Adjust the width of left and right elements */
+.container {
+    display: flex;
+    justify-content: space-between; /* Align left and right elements */
+    align-items: center;
+    margin: 40px;  /* Add margin around the container */
 }
+
+.left {
+    flex-basis: 50%; /* Adjust the width of left element */
+    margin-right: 20px; /* Add margin between left and right elements */
+}
+
+.right {
+    flex-basis: 50%; /* Adjust the width of right element */
+}
+
 
 .backnext {   display: flex;
     justify-content: space-between;
@@ -95,7 +108,7 @@ line-height: normal;
 
 
 
-.slider {
+/* .slider1 {
     -webkit-appearance: none;
     width: 100%;
     height: 15px;
@@ -107,12 +120,12 @@ line-height: normal;
     transition: opacity .2s;
 }
 
-.slider::-webkit-slider-runnable-track {
+.slider1::-webkit-slider-runnable-track {
     width: 100%;
     height: 15px;
     cursor: pointer;
     animate: 0.2s;
-    background: linear-gradient(to right, blue, white 50%, red 100%);
+    background: linear-gradient(to right white , red 100%);
     border-radius: 5px;
     border: 0px solid #000000;
     outline: none;
@@ -120,7 +133,7 @@ line-height: normal;
     margin: 0;
 }
 
-.slider::-webkit-slider-thumb {
+.slider1::-webkit-slider-thumb {
     box-shadow: inset 0 0 3px #000000;
     height: 20px;
     width: 20px;
@@ -131,7 +144,95 @@ line-height: normal;
     margin-top: -4px;
 }
 
-.slider:focus::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, blue, white 50%, red 100%);
+.slider1:focus::-webkit-slider-runnable-track {
+    background: linear-gradient(to right  white 50%, red 100%);
+} */
+
+.slider1 {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    /* Flip the slider horizontally */
+    direction: rtl;
+    width: 100%; /* Ensure the slider fills its container */
 }
+
+
+.slider1::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 15px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: linear-gradient(to right, blue, white);
+    border-radius: 5px;
+    border: 0px solid #000000;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slider1::-webkit-slider-thumb {
+    box-shadow: inset 0 0 3px #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+}
+
+.slider1:focus::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, white 50%, red 100%);
+}
+
+
+.slider2 {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider2::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 15px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: linear-gradient(to right, white , red 100%);
+    border-radius: 5px;
+    border: 0px solid #000000;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.slider2::-webkit-slider-thumb {
+    box-shadow: inset 0 0 3px #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+}
+
+.slider2:focus::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, white 50%, red 100%);
+}
+
+
+
 

@@ -26,16 +26,18 @@
             <div class="left">
                 <div class="shapneg">
                     <img src="#" alt="#" style="width: 700px; height: 500px;">
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="95" class="slider" id="myRange">  
+                    <div class="slidecontainer1">
+                        <input type="range" min="0" max="100" value="95" class="slider1" id="myRange1"> 
+                        <label for="myRange1" id="rangeValue1">95</label> 
                     </div>
                 </div>
             </div>
             <div class="right">
                 <div class="shappos">
                     <img src="#" alt="#" style="width: 700px; height: 500px;">
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="95" class="slider" id="myRange">
+                    <div class="slidecontainer2">
+                        <input type="range" min="1" max="100" value="95" class="slider2" id="myRange2">
+                        <label for="myRange2" id="rangeValue2">95</label> 
                     </div>
                 </div>
             </div>
@@ -46,5 +48,23 @@
         <!-- <p><input class="Next-btn" type="submit" value="Next"></p>  -->
         <a class="Next-btn" href="../templates/detectionpage.html">Next</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rangeSlider1 = document.getElementById('myRange1');
+            const rangeValue1 = document.getElementById('rangeValue1');
+            const rangeSlider2 = document.getElementById('myRange2');
+            const rangeValue2 = document.getElementById('rangeValue2');
+    
+            rangeSlider1.addEventListener('input', function() {
+                rangeValue1.textContent = rangeSlider1.value;
+            });
+    
+            rangeSlider2.addEventListener('input', function() {
+                rangeValue2.textContent = rangeSlider2.value;
+            });
+        });
+    </script>
+    
 </body>
 </html>
