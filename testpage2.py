@@ -29,7 +29,7 @@ def predict():
     node1_input = request.form.get('node1input')
     return redirect(url_for('evaluationpage', predict=predict_input, node0=node0_input, node1=node1_input))
 
-@app.route('/evaluationpage')
+@app.route('/shappercentile')
 def evaluationpage():
     predict_input = request.args.get('predict')
     node0_input = request.args.get('node0')
