@@ -17,13 +17,18 @@
       <li><a href="index.html">IMPORT MODELS</a></li>
       <li><a href="shappage.html">SHAP</a></li>
       <li><a>SHAP-PERCENTILE</a></li>  
-      <li><a href="detectionpage.html">DETECTION</a></li>
       <li><a href="evaluationpage.html">EVALUATION</a> </li>
 </ul>
     </nav>
     <div class="horizontal-line"></div>
+    <div class="back-button">
+        <button>Back</button>
     <div class="content">
         <h2>EVALUATION</h2>
+        <form action="/fromiou" method="POST">
+            <label for="fromiou">IOU</label>
+            <input type="text" name="fromiou" id="fromiou" value="10">
+        </form>
         <p>Predict: {{ predict }}</p>
         <p>Predict result: {{ predictresult}}</p>
         <p>Negative values: {{ node0 }}</p>
