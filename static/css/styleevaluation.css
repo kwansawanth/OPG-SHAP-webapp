@@ -64,6 +64,30 @@ line-height: normal;
 .content h2 {font-size: 40px;
     color: #0056b3;
 }
+.container {
+    display: flex;
+    justify-content: space-between; /* Align left and right elements */
+    align-items: center;
+    margin: 60px 20px; /* Horizontal and vertical spacing */
+    width: 100%; /* Full width */
+    height: calc(100vh - 60px - 2rem); /* Full height minus header and margin */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.left, .right {
+    flex: 1; /* Equal space distribution */
+    padding: 10px; /* Internal spacing */
+    overflow: auto; /* Allow internal scrolling if needed */
+}
+
+.left {
+    margin-right: 10px; /* Space between left and right */
+}
+
+.image {
+    width: 100%; /* Responsive image width */
+    height: auto; /* Maintain aspect ratio */
+}
 
 .button {   display: flex;
     justify-content: space-between;
@@ -81,3 +105,4 @@ line-height: normal;
     cursor: pointer;
     text-decoration: none; /* เอาเส้นใต้ออก */
 }
+
