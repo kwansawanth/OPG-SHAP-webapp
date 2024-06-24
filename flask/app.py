@@ -18,6 +18,7 @@ import cv2
 import subprocess
 import torch
 from yolov5 import utils
+from keras.preprocessing.image import load_img, img_to_array
 
 
 
@@ -29,16 +30,19 @@ FOLDER_MY_MODELS = 'static/my_models'
 UPLOAD_FOLDER_IMAGES = 'static/uploads/images'
 UPLOAD_FOLDER_MODELS = 'static/uploads/models'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'h5'}
+FOLDER_SHAP2ND = 'static/uploads/shap2nd/'
 
 app.config['FOLDER_MY_MODELS'] = FOLDER_MY_MODELS
 app.config['UPLOAD_FOLDER_IMAGES'] = UPLOAD_FOLDER_IMAGES
 app.config['UPLOAD_FOLDER_MODELS'] = UPLOAD_FOLDER_MODELS
+app.config['FOLDER_SHAP2ND'] = FOLDER_SHAP2ND
 
 # Create upload folders if they don't exist
 os.makedirs(FOLDER_MY_MODELS, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER_IMAGES, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER_MODELS, exist_ok=True)
-
+os.makedirs(FOLDER_SHAP2ND, exist_ok=True)
+ 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -59,6 +63,29 @@ def load_custom_model(model_path):
 
     model = tf.keras.models.load_model(model_path)
     return model
+
+def process_bg(images_directory):
+    background_data = []
+    image_paths = [os.path.join(images_directory, f) for f in os.listdir(images_directory) if os.path.isfile(os.path.join(images_directory, f))]
+    
+    for i, image_path in enumerate(image_paths):
+        print(f"Processing image {i+1}/{len(image_paths)}: {image_path}")
+        try:
+            image = load_img(image_path, target_size=(224, 224))
+            preprocessed_image = img_to_array(image) / 255.0
+            background_data.append(preprocessed_image)
+        except Exception as e:
+            print(f"Error loading image {image_path}: {e}")
+
+    return np.array(background_data)
+
+# Define the base path for your images
+images_base_path = "images_bg"
+# Create background data using the process_input function
+background_train = process_bg(images_base_path)
+# Convert background data to numpy array
+background_train_np = np.array(background_train)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -140,10 +167,16 @@ def predict():
         output = f"Prediction from {selected_model}: {predicted_class}"
         print(f'output: {output}')
 
-        # call the shap.py script as a subprocess
-        subprocess.run(['python', 'shap.py', left_image_path])
         
-        return render_template('shappage.html', output=output, predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input)
+        background_train_np_path = 'background_train_np.npy'
+        np.save(background_train_np_path, background_train_np)
+        
+        # call the shap.py script as a subprocess
+        subprocess.run(['python', 'shap_.py', left_image_path, selected_model, background_train_np_path])
+        
+        shap_image_url = url_for('static', filename='uploads/shap2nd/cropped_shap_image_plot.png')
+        
+        return render_template('shappage.html', output=output, predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input, shap_image_url=shap_image_url)
     
     return redirect(url_for('index'))
 
