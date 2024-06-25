@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPG - SHAP WEB</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/updateDefaults.js"></script>
+</head>
+<body>
+    <div class="colored-box"></div>
+    <nav>
+        <div class ="logo">
+            <a href="#">OPG-SHAP</a>
+         </div>
+         <ul class="menu">
+            <li><a href="templates/index.html">IMPORT MODELS</a></li>
+            <li><a href="shappage.html">SHAP</a></li>
+            <li><a href="shappercentile.html">SHAP-PERCENTILE</a></li>
+            <li><a href="evaluationpage.html">EVALUATION</a> </li>
+        </ul>
+    </nav>
+    <div class="horizontal-line"></div>
+    <div class="content">
+        <h2>Welcome to OPG-SHAP</h2>
+        <div class="container">
+            <div class="left">
+                <h3>Get start</h3>
+                <form action="/frompredict-page1" method="POST">
+                    <select name="model_select" id="model_select" class="select" onchange="updateDefaults()">
+                        <option value="">Select Models</option>
+                        <option value="0">Age estimation model</option>
+                        <option value="1">Sex estimation model</option>
+                    </select>
+                    <input type="hidden" id="frompredict" name="frompredict">
+                    <input type="hidden" id="node0input" name="node0input">
+                    <input type="hidden" id="node1input" name="node1input">
+                    <p><input class="predict-btn" type="submit" value="Predict"></p> 
+                </form>    
+            </div> 
+        </div> 
+    </div>
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+</body>
+</html>
