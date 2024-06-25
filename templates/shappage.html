@@ -13,36 +13,36 @@
         <div class="logo">
             <a href="#">OPG-SHAP</a>
         </div>
-        
         <ul class="menu">
             <li><a href="index.html">IMPORT MODELS</a></li>
             <li><a href="shappage.html">SHAP</a></li>
-            <li><a>SHAP-PERCENTILE</a></li>  
+            <li><a href="detectionpage.html">DETECTION</a></li>
             <li><a href="evaluationpage.html">EVALUATION</a></li>
         </ul>
     </nav>
     <div class="horizontal-line"></div>
-    <div class="back-button">
-        <button>Back</button>
     <div class="content">
         <h2>SHAP</h2>
         <form action="/frompredict" method="POST">
             <label for="frompredict">Predict:</label>
             <input type="text" name="frompredict" id="frompredict" value="{{ predict_input }}">
             <br><br>
-            <label for="node0input">Negative:</label>
+            <label for="node0input">Node0:</label>
             <input type="text" name="node0input" id="node0input" value="{{ node0_input }}">
-            <label for="node1input">Positive:</label>
+            <br><br>
+            <label for="node1input">Node1:</label>
             <input type="text" name="node1input" id="node1input" value="{{ node1_input }}">
             <br><br>
             <div class="shapoutput">
-                <img src="#" alt="#" style="width: 700px; height: 500px;">
+                <img src="{{ shap_image_url }}" alt="SHAP Image Plot" style="width: 600px; height: 275px;">
             </div>
-            OPG-INPUT                  SHAP PLOT IMAGE
             <div class="backnext">
-                <p><input class="Next-btn" type="submit" value="Next"></p>
+                <a class="back-btn" href="index.html">Back</a>
             </div>
         </form>
+        <form action="/shappercentile" method="POST">
+            <p><input class="Next-btn" type="submit" value="Next"></p>
+        </form>    
     </div>
 </body>
 </html>
