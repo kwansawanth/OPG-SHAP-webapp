@@ -1,6 +1,7 @@
 import os
 import secrets
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+import json
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import tensorflow as tf
@@ -19,6 +20,7 @@ import subprocess
 import torch
 from yolov5 import utils
 from keras.preprocessing.image import load_img, img_to_array
+import random
 
 
 
@@ -31,18 +33,22 @@ UPLOAD_FOLDER_IMAGES = 'static/uploads/images'
 UPLOAD_FOLDER_MODELS = 'static/uploads/models'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'h5'}
 FOLDER_SHAP2ND = 'static/uploads/shap2nd/'
+FOLDER_PERCENTILE = 'static/uploads/percentile/'
+
 
 app.config['FOLDER_MY_MODELS'] = FOLDER_MY_MODELS
 app.config['UPLOAD_FOLDER_IMAGES'] = UPLOAD_FOLDER_IMAGES
 app.config['UPLOAD_FOLDER_MODELS'] = UPLOAD_FOLDER_MODELS
 app.config['FOLDER_SHAP2ND'] = FOLDER_SHAP2ND
+app.config['FOLDER_PERCENTILE'] = FOLDER_PERCENTILE
 
 # Create upload folders if they don't exist
 os.makedirs(FOLDER_MY_MODELS, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER_IMAGES, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER_MODELS, exist_ok=True)
 os.makedirs(FOLDER_SHAP2ND, exist_ok=True)
- 
+os.makedirs(FOLDER_PERCENTILE, exist_ok=True)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -85,7 +91,6 @@ images_base_path = "images_bg"
 background_train = process_bg(images_base_path)
 # Convert background data to numpy array
 background_train_np = np.array(background_train)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -166,21 +171,79 @@ def predict():
         predicted_class = np.argmax(predictions[0])
         output = f"Prediction from {selected_model}: {predicted_class}"
         print(f'output: {output}')
-
         
         background_train_np_path = 'background_train_np.npy'
         np.save(background_train_np_path, background_train_np)
         
-        # call the shap.py script as a subprocess
-        subprocess.run(['python', 'shap_.py', left_image_path, selected_model, background_train_np_path])
-        
-        shap_image_url = url_for('static', filename='uploads/shap2nd/cropped_shap_image_plot.png')
-        
-        return render_template('shappage.html', output=output, predict_input=predict_input_page1, node0_input=node0_input, node1_input=node1_input, shap_image_url=shap_image_url)
+        try:
+            # call the shap.py script as a subprocess
+            result = subprocess.run(
+                ['python', 'shap_.py', left_image_path, selected_model, background_train_np_path],
+                stdout=subprocess.PIPE,  # Capture standard output
+                stderr=subprocess.PIPE,  # Capture standard error
+                check=True
+            )
+            
+            shap_image_url = url_for('static', filename='uploads/shap2nd/cropped_shap_image_plot.png')
+  
+            return render_template('shappage.html', 
+                                # output=output_data['text'], 
+                                # shap_values_left_opg_2=session['shap_values_left_opg_2'], 
+                                shap_image_url=shap_image_url)
+        except subprocess.CalledProcessError as e:
+            print("Subprocess error:", e.stderr.decode())  # Print the error message
+            return jsonify({'error': e.stderr.decode()}), 500
+        except Exception as e:
+            print("General error:", str(e))  # Print any other errors
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/shappercentile', methods=['GET', 'POST'])
+def shappercentile_page():
+    grayscale_neg_image_url = url_for('static', filename='uploads/percentile/grayscale_image_plot_neg.png') 
     
-    return redirect(url_for('index'))
+    grayscale_pos_image_url = url_for('static', filename='uploads/percentile/grayscale_image_plot_pos.png') 
+    
+    print(grayscale_neg_image_url)
+    print(grayscale_pos_image_url)
+    return render_template(
+        'shappercentile.html', grayscale_neg_image_url=grayscale_neg_image_url, grayscale_pos_image_url=grayscale_pos_image_url)
 
+### this route set 95% which is default
+@app.route('/default_shappercentile',  methods=['POST'])
+def default_shappercentile():
+    value1 = '95'
+    value2 = '95'
+    
+    shap_values_left_opg_2 = 'shap_values_left.npy'
+    
+    # Call the grayscale.py script using subprocess.run
+    result = subprocess.run(
+        ['python', 'grayscale.py', shap_values_left_opg_2, value1, value2],
+        stdout=subprocess.PIPE,  # Capture standard output
+        stderr=subprocess.PIPE,  # Capture standard error
+        check=True
+    )
+    
+    return redirect(url_for('shappercentile_page'))
 
+@app.route('/percentile', methods=['POST'])
+def call_grayscale():
+    data = request.json
+    print(data)
+    value1 = str(data.get('value1'))
+    value2 = str(data.get('value2'))
+    
+    print(value1, value2)
+    shap_values_left_opg_2 = 'shap_values_left.npy'
+    
+    # Call the grayscale.py script using subprocess.run
+    result = subprocess.run(
+        ['python', 'grayscale.py', shap_values_left_opg_2, value1, value2],
+        stdout=subprocess.PIPE,  # Capture standard output
+        stderr=subprocess.PIPE,  # Capture standard error
+        check=True
+    )
+    return redirect(url_for('shappercentile_page'))
 
 if __name__ == '__main__':
     app.run(debug=True)

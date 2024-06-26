@@ -32,10 +32,9 @@
         </form>  
     
         <div class="container">
-            <form action="/percentile" method="POST">
                 <div class="left">
                     <div class="shapneg">
-                        <img src="{{ shap_image_url_neg }}" alt="#" class="image">
+                        <img id="displayedImageNeg" src="{{ grayscale_neg_image_url }}" alt="#" class="image">
                         <div class="slidecontainer1">
                             <input type="range" min="0" max="100" value="95" class="slider1" id="myRange1"> 
                             <label for="myRange1" id="rangeValue1">95</label> 
@@ -44,22 +43,50 @@
                 </div>
                 <div class="right">
                     <div class="shappos">
-                        <img src="{{ shap_image_url_pos }}" alt="#" class="image">
+                        <img id="displayedImagePos" src="{{ grayscale_pos_image_url }}" alt="#" class="image">
                         <div class="slidecontainer2">
                             <input type="range" min="1" max="100" value="95" class="slider2" id="myRange2">
                             <label for="myRange2" id="rangeValue2">95</label> 
                         </div>
                     </div>
-                </div>
-            </form>    
+                </div>  
         </div>
     
+
         <div class="backnext">
             <a class="back-btn" href="../templates/index.html">Back</a>
             <a class="Next-btn" href="../templates/evaluationpage.html">Next</a>
         </div>
-
+        
         <script>
+            function reloadImages() {
+                var negImgElement = document.getElementById('displayedImageNeg');
+                var posImgElement = document.getElementById('displayedImagePos');
+                var timestamp = new Date().getTime(); // Get current timestamp
+                negImgElement.src = '{{ grayscale_neg_image_url }}?' + timestamp; // Append timestamp to avoid caching
+                posImgElement.src = '{{ grayscale_pos_image_url }}?' + timestamp; // Append timestamp to avoid caching
+            }
+
+            function sendRangeValues() {
+                const value1 = document.getElementById('myRange1').value;
+                const value2 = document.getElementById('myRange2').value;
+                console.log("Value1: " + value1);
+                console.log("Value2: " + value2);
+                fetch('/percentile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ value1: value1, value2: value2 }),
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+
             document.addEventListener('DOMContentLoaded', function() {
                 const rangeSlider1 = document.getElementById('myRange1');
                 const rangeValue1 = document.getElementById('rangeValue1');
@@ -74,28 +101,13 @@
                     rangeValue2.textContent = rangeSlider2.value;
                 });
 
-                function sendRangeValues() {
-                    const value1 = rangeSlider1.value;
-                    const value2 = rangeSlider2.value;
-
-                    fetch('/store_values', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ value1: value1, value2: value2 }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                }
-
                 rangeSlider1.addEventListener('change', sendRangeValues);
                 rangeSlider2.addEventListener('change', sendRangeValues);
+
+                // Initial load
+                sendRangeValues();
+                reloadImages();
+                setInterval(reloadImages, 1000);
             });
         </script>
     </div>
