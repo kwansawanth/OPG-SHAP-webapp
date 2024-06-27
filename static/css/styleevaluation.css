@@ -89,7 +89,8 @@ line-height: normal;
     height: auto; /* Maintain aspect ratio */
 }
 
-.button {   display: flex;
+.button {   
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
