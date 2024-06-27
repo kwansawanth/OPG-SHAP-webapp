@@ -21,14 +21,15 @@
     </nav>
     <div class="content">
         <h2>SHAP-PERCENTILE</h2>
-        <form action="/frompredict" method="POST">
+        <form action="/shappercentile1" method="POST">
             <label for="frompredict"></label>
-            <input type="hidden" id="frompredict" name="frompredict">
+            <input type="hidden" id="frompredict" name="predict_input" value="{{ predict_input1}}">
             <br><br>
             <label for="node0input">Negative:</label>
-            <input type="text" name="node0input" id="node0input" value="{{ node0_input }}">
+            <input type="text" name="node0input" id="node0_input" value="{{node0}}">
             <label for="node1input">Positive:</label>
-            <input type="text" name="node1input" id="node1input" value="{{ node1_input }}">
+            <input type="text" name="node1input" id="node1_input" value="{{node1}}">
+             <!-- <form action="/evaluationpage" method="POST"> -->
         </form>  
     
         <div class="container">
@@ -56,7 +57,9 @@
 
         <div class="backnext">
             <a class="back-btn" href="../templates/index.html">Back</a>
-            <a class="Next-btn" href="../templates/evaluationpage.html">Next</a>
+            <form action="/evaluationpage" method="POST">
+                <input class="Next-btn" type="submit" value="Next"></p>
+            </form>
         </div>
         
         <script>

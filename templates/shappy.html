@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPG - SHAP WEB</title>
     <link rel="stylesheet" href="../static/css/styleshap.css">
-    <!-- <script src="../static/js/updateDefaults.js"></script> -->
+    <script src="../static/js/updateDefaults.js"></script>
 </head>
 <body>
     <div class="colored-box"></div>
@@ -23,15 +23,15 @@
     <div class="horizontal-line"></div>
     <div class="content">
         <h2>SHAP</h2>
-        <form action="/shappercentile" method="POST">
+        <form action="/shappercentile1" method="POST">
             <label for="frompredict">Predict:</label>
-            <input type="text" name="predict_input" id="predict_input" value="{{ predict_input }}">
+            <input type="text" name="frompredict" id="predict_input" value="{{ predict_input }}">
             <br><br>
             <label for="node0input">Node0:</label>
-            <input type="text" name="node0_input" id="node0_input" value="{{ node0_input }}">
+            <input type="text" name="node0input" id="node0_input" value="{{ node0_input }}">
             <br><br>
             <label for="node1input">Node1:</label>
-            <input type="text" name="node1_input" id="node1_input" value="{{ node1_input }}">
+            <input type="text" name="node1input" id="node1_input" value="{{ node1_input }}">
             <br><br>
             <div class="shapoutput">
                 <img src="{{ shap_image_url }}" alt="SHAP Image Plot" style="width: 600px; height: 275px;">
